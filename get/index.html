@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Protein Hunter</title>
+<meta name="description" content="Download Protein Hunter on the App Store or Google Play.">
+<meta property="og:title" content="Protein Hunter">
+<meta property="og:description" content="Type it. Snap it. Sync it. Any diet, any macro.">
+<style>
+  :root { --ink:#0C1712; --card:#13221B; --bone:#EFEDE4; --muted:#8FA69A; --amber:#FFB020; --teal:#35D0A5; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { min-height:100%; background:var(--ink); color:var(--bone);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  main { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:32px 16px; text-align:center; background:radial-gradient(120% 70% at 50% 0%, #16281F 0%, var(--ink) 62%); }
+  h1 { font-size:34px; font-weight:800; letter-spacing:.01em; }
+  h1 span { color:var(--amber); }
+  p { margin-top:10px; color:var(--muted); font-size:16px; line-height:1.5; max-width:340px; }
+  .btns { margin-top:28px; display:flex; flex-direction:column; gap:12px; width:100%; max-width:320px; }
+  a.btn { display:block; padding:16px 20px; border-radius:16px; font-weight:700; font-size:17px; text-decoration:none; }
+  a.ios { background:var(--amber); color:#1a1200; }
+  a.android { background:var(--card); color:var(--bone); border:1px solid rgba(233,237,228,.15); }
+  .note { margin-top:18px; font-size:13px; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>PROTEIN <span>HUNTER</span></h1>
+  <p id="msg">Opening your app store…</p>
+  <div class="btns">
+    <a class="btn ios" id="ios" href="https://apps.apple.com/app/id6796945175">Download on the App Store</a>
+    <a class="btn android" id="android" href="https://play.google.com/store/apps/details?id=com.proteinhunter.app">Get it on Google Play</a>
+  </div>
+  <p class="note">Free to download. Any diet, any macro.</p>
+</main>
+<script>
+(function () {
+  var IOS = "https://apps.apple.com/app/id6796945175";
+  var ANDROID = "https://play.google.com/store/apps/details?id=com.proteinhunter.app";
+  // Pass ad tracking params through to Google Play so installs can be attributed.
+  var qs = location.search.replace(/^\?/, "");
+  var ref = qs ? "&referrer=" + encodeURIComponent(qs) : "&referrer=" + encodeURIComponent("utm_source=tiktok&utm_medium=paid");
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && "ontouchend" in document);
+  var isAndroid = /Android/i.test(ua);
+  document.getElementById("android").href = ANDROID + ref;
+  if (isIOS) { location.replace(IOS); }
+  else if (isAndroid) { location.replace(ANDROID + ref); }
+  else { document.getElementById("msg").textContent = "Pick your store:"; }
+})();
+</script>
+</body>
+</html>
